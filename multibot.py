@@ -13,11 +13,11 @@ lock = threading.Lock()
 def multifeed(puppet, puppet_active_key, puppet_posting_key):
     #lock.acquire()
     #upvote_history = []
-    print("{} : Waiting for new posts by {}".format(puppet, my_subscriptions))
+    print("{} : Waiting for new posts".format(puppet))
     steem = Steem(wif=puppet_posting_key)
     for comment in steem.stream_comments():
 
-        if comment.author in my_subscriptions:
+         #comment.author in my_subscriptions:
             #if len(comment.title) > 0:
 
                 if comment.identifier in upvote_history:
@@ -41,11 +41,11 @@ def multifeed(puppet, puppet_active_key, puppet_posting_key):
                 return print("Voted!")
 
 def feed():
-    print("Waiting for new posts by %s\n" % my_subscriptions)
+    print("Waiting for new posts")
     steem = Steem(wif=posting_key)
     for comment in steem.stream_comments():
 
-        if comment.author in my_subscriptions:
+        # comment.author in my_subscriptions:
             # Comments don't have titles. This is how we can know if we have a post or a comment.
             if len(comment.title) > 0:
 
